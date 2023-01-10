@@ -39,8 +39,8 @@ CC BY 4.0 <i class="fab fa-creative-commons"></i> <i class="fab fa-creative-comm
 </section>
 
 <section>
-<section id="slide-org96c6d10">
-<h2 id="org96c6d10">who -u</h2>
+<section id="slide-org2ef3715">
+<h2 id="org2ef3715">who -u</h2>
 <p>
 Dan Čermák
 </p>
@@ -64,8 +64,8 @@ Dan Čermák
 </section>
 </section>
 <section>
-<section id="slide-org7dc94b1">
-<h2 id="org7dc94b1">Sales pitch</h2>
+<section id="slide-orge6d3278">
+<h2 id="orge6d3278">Sales pitch</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-cloud-sun-rain"></i> shell scripts are brittle</li>
 <li class="fragment appear">use <a href="https://testinfra.readthedocs.io/">testinfra</a> for convenience</li>
@@ -81,8 +81,8 @@ Dan Čermák
 </section>
 </section>
 <section>
-<section id="slide-orgae7ef55">
-<h2 id="orgae7ef55">Basic Example</h2>
+<section id="slide-orgb47cde0">
+<h2 id="orgb47cde0">Basic Example</h2>
 <div class="org-src-container">
 
 <pre   ><code class="python" >import pytest
@@ -103,8 +103,8 @@ def test_etc_os_release_present(container: ContainerData):
 </section>
 </section>
 <section>
-<section id="slide-org1626248">
-<h2 id="org1626248">Use Cases</h2>
+<section id="slide-org633e8eb">
+<h2 id="org633e8eb">Use Cases</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-box-open"></i> system tests of base containers</li>
 <li class="fragment appear"><i class="fa-solid fa-database"></i> test applications inside containers</li>
@@ -116,8 +116,8 @@ def test_etc_os_release_present(container: ContainerData):
 </section>
 </section>
 <section>
-<section id="slide-org2de700d">
-<h2 id="org2de700d"><code>pytest</code> basics</h2>
+<section id="slide-org7fa9525">
+<h2 id="org7fa9525"><code>pytest</code> basics</h2>
 <ul>
 <li data-fragment-index="1" class="fragment appear"><i class="fa-brands fa-python"></i> Python testing framework</li>
 <li data-fragment-index="2" class="fragment appear">executes all functions called <code>test_*</code></li>
@@ -151,13 +151,13 @@ def test_foo(x: int, y: int):
 </section>
 </section>
 <section>
-<section id="slide-org4892cbe">
-<h2 id="org4892cbe">Usage examples</h2>
-<div class="outline-text-2" id="text-org4892cbe">
+<section id="slide-org23f6d37">
+<h2 id="org23f6d37">Usage examples</h2>
+<div class="outline-text-2" id="text-org23f6d37">
 </div>
 </section>
-<section id="slide-org59b95f5">
-<h3 id="org59b95f5">Build a new container for tests</h3>
+<section id="slide-orga9ac688">
+<h3 id="orga9ac688">Build a new container for tests</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" >WEB_SERVER = DerivedContainer(
@@ -176,8 +176,8 @@ def test_python_installed(container: ContainerData):
 
 
 </section>
-<section id="slide-orgd7fb39e">
-<h3 id="orgd7fb39e">Run mutable tests</h3>
+<section id="slide-org6bf74e1">
+<h3 id="org6bf74e1">Run mutable tests</h3>
 <p>
 use the <code>container_per_test</code> fixture:
 </p>
@@ -203,8 +203,8 @@ def test_uninstall_zypper(container_per_test):
 
 
 </section>
-<section id="slide-org42e22b0">
-<h3 id="org42e22b0">Use the same containers globally</h3>
+<section id="slide-org75d4d17">
+<h3 id="org75d4d17">Use the same containers globally</h3>
 <p>
 use the <code>auto_container</code> / <code>auto_container_per_test</code> fixtures:
 </p>
@@ -222,8 +222,8 @@ def test_zypper_rm_works(auto_container_per_test): ...
 
 
 </section>
-<section id="slide-orgccf86dc">
-<h3 id="orgccf86dc">Dependencies between containers</h3>
+<section id="slide-orgec29cf9">
+<h3 id="orgec29cf9">Dependencies between containers</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" >TW = Container(
@@ -246,8 +246,8 @@ def test_nginx(auto_container): ...
 
 
 </section>
-<section id="slide-org52209bb">
-<h3 id="org52209bb">Get a free port on the host</h3>
+<section id="slide-orgf50b7c7">
+<h3 id="orgf50b7c7">Get a free port on the host</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" >WEB_SERVER = DerivedContainer(
@@ -267,8 +267,8 @@ def test_port_forward(container: ContainerData, host):
 
 
 </section>
-<section id="slide-org2cbb4fe">
-<h3 id="org2cbb4fe">Container Volumes</h3>
+<section id="slide-org968f40b">
+<h3 id="org968f40b">Container Volumes</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" >ROOTDIR_BIND_MOUNTED = DerivedContainer(
@@ -290,8 +290,8 @@ def test_bind_mount_cwd(container: ContainerData):
 
 
 </section>
-<section id="slide-orgccd05f9">
-<h3 id="orgccd05f9"><code>HEALTHCHECK</code></h3>
+<section id="slide-org7c9093c">
+<h3 id="org7c9093c"><code>HEALTHCHECK</code></h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" >WEB_SERVER = DerivedContainer(
@@ -312,7 +312,7 @@ def test_server_up(container, container_runtime):
 </div>
 
 </section>
-<section id="slide-orgccd05f9-split">
+<section id="slide-org7c9093c-split">
 
 <div class="org-src-container">
 
@@ -336,8 +336,8 @@ def test_server_up(container, container_runtime):
 </section>
 </section>
 <section>
-<section id="slide-org4d92ccb">
-<h2 id="org4d92ccb">Users</h2>
+<section id="slide-org4ea54dc">
+<h2 id="org4ea54dc">Users</h2>
 <ul>
 <li class="fragment appear"><a href="https://github.com/SUSE/BCI-tests/">BCI testsuite</a></li>
 <li class="fragment appear"><a href="https://github.com/OSInside/kiwi/tree/master/test/scripts">kiwi image builder scripts</a></li>
@@ -351,8 +351,8 @@ def test_server_up(container, container_runtime):
 </section>
 </section>
 <section>
-<section id="slide-org913ba2c">
-<h2 id="org913ba2c">Thanks!</h2>
+<section id="slide-org52afd40">
+<h2 id="org52afd40">Thanks!</h2>
 <ul>
 <li><a href="https://github.com/evrardjp">Jean-Philippe Evrard</a></li>
 <li>QAC Team, especially Jose Lausuch and Felix Niederwanger</li>
@@ -363,8 +363,8 @@ def test_server_up(container, container_runtime):
 </section>
 </section>
 <section>
-<section id="slide-org8aa5f1b">
-<h2 id="org8aa5f1b">Give it a try!</h2>
+<section id="slide-orgf8f429e">
+<h2 id="orgf8f429e">Give it a try!</h2>
 <p>
  <i class="fab fa-github"></i> <a href="https://github.com/dcermak/pytest_container"><code>dcermak/pytest_container</code></a>
 </p>
@@ -377,8 +377,8 @@ Docs: <a href="https://dcermak.github.io/pytest_container/index.html"><code>dcer
 </section>
 </section>
 <section>
-<section id="slide-org25340e2">
-<h2 id="org25340e2">Questions?</h2>
+<section id="slide-org61ffd02">
+<h2 id="org61ffd02">Questions?</h2>
 <p class="fragment (appear)">
 Answers!
 </p>
@@ -387,8 +387,8 @@ Answers!
 </section>
 </section>
 <section>
-<section id="slide-orgce8eccc">
-<h2 id="orgce8eccc">What would you like to see?</h2>
+<section id="slide-org5393d3e">
+<h2 id="org5393d3e">What would you like to see?</h2>
 <p class="fragment (appear)">
 👉 <a href="https://github.com/dcermak/pytest_container/issues" class="fragment (appear)"><code>github.com/dcermak/pytest_container/issues</code></a>
 </p>
@@ -397,8 +397,8 @@ Answers!
 </section>
 </section>
 <section>
-<section id="slide-org68b1666">
-<h2 id="org68b1666">Legal</h2>
+<section id="slide-orgcb45fb2">
+<h2 id="orgcb45fb2">Legal</h2>
 <ul>
 <li><a href="https://revealjs.com/">reveal.js</a> MIT</li>
 <li><a href="https://fontawesome.com/">Font Awesome</a> CC-BY-4.0 and SIL OFL 1.1 and MIT</li>
