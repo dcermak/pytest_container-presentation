@@ -1,0 +1,18 @@
+* =pytest_container=: Testing containers with python and pytest
+
+This repository contains the slides for a presentation introducing [[https://github.com/dcermak/pytest_container][pytest_container]].
+
+You can find the rendered slides here: [[https://dcermak.github.io/pytest_container-presentation/pytest_container.html][dcermak.github.io/pytest_container-presentation]].
+
+
+** Building the slides
+
+You can create the html slides yourself from within Emacs by opening the
+[[./pytest_container.org]] file, launching =org-mode= and executing ~(require
+'ox-reveal)~ (you might have to install =ox-reveal= beforehand). Then export the
+org file to reveal.js (this is by default bound to the keychord =C-c C-e R R=).
+
+If you are not a Emacs user, then just install Emacs and execute:
+#+begin_src bash
+emacs pytest_container.org -Q --batch -l export-init.el -f org-reveal-export-to-html --kill
+#+end_src
