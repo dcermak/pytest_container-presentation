@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title><code>pytest_container</code></title>
+<meta name="author" content="Dan Čermák"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="./node_modules/reveal.js/dist/theme/simple.css" id="theme"/>
+
+<link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css"/>
+
+<link rel="stylesheet" href="./custom-style.css"/>
+<link rel="stylesheet" href="./node_modules/reveal.js/plugin/highlight/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './node_modules/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h2 class="title"><code>pytest_container</code></h2>
+<p class="subtitle" style="color: Gray;">Testing containers with python and pytest</p>
+<p class="author">Dan Čermák</p>
+<div style="float:right;font-size:35px;"><p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#"><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
+CC BY 4.0 <i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i></a></p></div>
+</section>
+
+<section>
+<section id="slide-org96c6d10">
+<h2 id="org96c6d10">who -u</h2>
+<p>
+Dan Čermák
+</p>
+
+<p>
+ <div style="float:center">
+ <table class="who-table">
+ <tr><td><i class="fab fa-suse"></i></td><td> Software Developer @SUSE</td></tr>
+ <tr><td><i class="fab fa-fedora"></i></td><td> i3 SIG, Package maintainer</td></tr>
+ <tr><td><i class="far fa-heart"></i></td><td> Developer Tools, Testing and Documentation, Home Automation</td></tr>
+ <tr></tr>
+ <tr></tr>
+ <tr><td><i class="fa-solid fa-globe"></i></td><td> <a href="https://dancermak.name/">https://dancermak.name</a></td></tr>
+ <tr><td><i class="fab fa-github"></i></td><td> <a href="https://github.com/dcermak/">dcermak</a> / <a href="https://github.com/D4N/">D4N</a></td></tr>
+ <tr><td><i class="fab fa-mastodon"></i></td><td> <a href="https://mastodon.social/@Defolos">@Defolos@mastodon.social</a></td></tr>
+ </table>
+ </div>
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7dc94b1">
+<h2 id="org7dc94b1">Sales pitch</h2>
+<ul>
+<li class="fragment appear"><i class="fa-solid fa-cloud-sun-rain"></i> shell scripts are brittle</li>
+<li class="fragment appear">use <a href="https://testinfra.readthedocs.io/">testinfra</a> for convenience</li>
+<li class="fragment appear">automatically pull, build, launch &amp; cleanup containers  <i class="fa-solid fa-cloud-arrow-down"></i></li>
+<li class="fragment appear"><i class="fa-solid fa-shuffle"></i> parallel test execution via <a href="https://github.com/pytest-dev/pytest-xdist">pytest-xdist</a></li>
+<li class="fragment appear">find &amp; bind free ports</li>
+<li class="fragment appear"><i class="fa-solid fa-broom"></i> create and cleanup container volumes &amp; bind mounts</li>
+<li class="fragment appear"><i class="fa-solid fa-boxes-stacked"></i> run the same test on multiple container images</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgae7ef55">
+<h2 id="orgae7ef55">Basic Example</h2>
+<div class="org-src-container">
+
+<pre   ><code class="python" >import pytest
+from pytest_container import Container, ContainerData
+
+TW = Container(
+    url="registry.opensuse.org/opensuse/tumbleweed:latest"
+)
+
+
+@pytest.mark.parametrize("container", [TW], indirect=True)
+def test_etc_os_release_present(container: ContainerData):
+    assert container.connection.file("/etc/os-release").exists
+</code></pre>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org1626248">
+<h2 id="org1626248">Use Cases</h2>
+<ul>
+<li class="fragment appear"><i class="fa-solid fa-box-open"></i> system tests of base containers</li>
+<li class="fragment appear"><i class="fa-solid fa-database"></i> test applications inside containers</li>
+<li class="fragment appear"><i class="fa-solid fa-boxes-stacked"></i> run tests of your application on multiple OS'</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org2de700d">
+<h2 id="org2de700d"><code>pytest</code> basics</h2>
+<ul>
+<li data-fragment-index="1" class="fragment appear"><i class="fa-brands fa-python"></i> Python testing framework</li>
+<li data-fragment-index="2" class="fragment appear">executes all functions called <code>test_*</code></li>
+<li data-fragment-index="3" class="fragment appear">fixtures for setup &amp; teardown  <i class="fa-solid fa-broom"></i></li>
+
+</ul>
+
+
+<div class="org-src-container">
+
+<pre  class="fragment (appear)" data-fragment-index="3"  ><code class="python" >def test_ehlo(smtp_connection):
+    response, msg = smtp_connection.ehlo()
+    assert response == 250
+</code></pre>
+</div>
+
+<ul>
+<li data-fragment-index="4" class="fragment appear">test <a href="https://docs.pytest.org/en/stable/how-to/parametrize.html">parametrization</a></li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="fragment (appear)" data-fragment-index="4"  ><code class="python" >@pytest.mark.parametrize("x", [0, 1])
+@pytest.mark.parametrize("y", [2, 3])
+def test_foo(x: int, y: int):
+    # do something with x &amp; y here
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org4892cbe">
+<h2 id="org4892cbe">Usage examples</h2>
+<div class="outline-text-2" id="text-org4892cbe">
+</div>
+</section>
+<section id="slide-org59b95f5">
+<h3 id="org59b95f5">Build a new container for tests</h3>
+<div class="org-src-container">
+
+<pre   ><code class="python" >WEB_SERVER = DerivedContainer(
+    base="registry.opensuse.org/opensuse/leap:15.4",
+    containerfile="""RUN zypper -n in python3 \
+    &amp;&amp; echo "Hello Green World!" &gt; index.html
+ENTRYPOINT ["/usr/bin/python3", "-m", "http.server"]
+"""
+)
+
+@pytest.mark.parametrize("container", [WEB_SERVER], indirect=True)
+def test_python_installed(container: ContainerData):
+    assert container.connection.package("python3").is_installed
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-orgd7fb39e">
+<h3 id="orgd7fb39e">Run mutable tests</h3>
+<p>
+use the <code>container_per_test</code> fixture:
+</p>
+
+<div class="org-src-container">
+
+<pre   ><code class="python" >@pytest.mark.parametrize(
+    "container_per_test", [TW], indirect=True
+)
+def test_rm_rf(container_per_test):
+    container_per_test.connection.run_expect([0], "rm -rf /")
+
+
+@pytest.mark.parametrize(
+    "container_per_test", [TW], indirect=True
+)
+def test_uninstall_zypper(container_per_test):
+    container_per_test.connection.run_expect(
+	[0], "rpm -e --nodeps zypper"
+    )
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-org42e22b0">
+<h3 id="org42e22b0">Use the same containers globally</h3>
+<p>
+use the <code>auto_container</code> / <code>auto_container_per_test</code> fixtures:
+</p>
+<div class="org-src-container">
+
+<pre   ><code class="python" >CONTAINER_IMAGES = [TW, LEAP, SLE]
+
+
+def test_etc_os_release(auto_container): ...
+
+
+def test_zypper_rm_works(auto_container_per_test): ...
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-orgccf86dc">
+<h3 id="orgccf86dc">Dependencies between containers</h3>
+<div class="org-src-container">
+
+<pre   ><code class="python" >TW = Container(
+    url="registry.opensuse.org/opensuse/tumbleweed:latest"
+)
+NGINX = DerivedContainer(
+    base=TW,
+    containerfile="RUN zypper -n in nginx",
+)
+NGINX_DEBUG = DerivedContainer(
+    base=NGINX,
+    containerfile="RUN zypper -n in gdb nginx-debuginfo"
+)
+
+CONTAINER_IMAGES=[NGINX_DEBUG]
+
+def test_nginx(auto_container): ...
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-org52209bb">
+<h3 id="org52209bb">Get a free port on the host</h3>
+<div class="org-src-container">
+
+<pre   ><code class="python" >WEB_SERVER = DerivedContainer(
+    # snip
+    forwarded_ports=[PortForwarding(container_port=8000)],
+)
+
+@pytest.mark.parametrize("container", [WEB_SERVER], indirect=True)
+def test_port_forward(container: ContainerData, host):
+    cmd = (
+	"curl localhost:"
+	+ str(container.forwarded_ports[0].host_port)
+    )
+    host.run_expect([0], cmd)
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-org2cbb4fe">
+<h3 id="org2cbb4fe">Container Volumes</h3>
+<div class="org-src-container">
+
+<pre   ><code class="python" >ROOTDIR_BIND_MOUNTED = DerivedContainer(
+    base="registry.opensuse.org/opensuse/tumbleweed",
+    volume_mounts=[
+	BindMount("/src/", host_path=get_rootdir())
+    ],
+)
+
+
+@pytest.mark.parametrize(
+    "container", [ROOTDIR_BIND_MOUNTED], indirect=True
+)
+def test_bind_mount_cwd(container: ContainerData):
+    vol = container.container.volume_mounts[0]
+    assert container.connection.file("/src/").exists
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-orgccd05f9">
+<h3 id="orgccd05f9"><code>HEALTHCHECK</code></h3>
+<div class="org-src-container">
+
+<pre   ><code class="python" >WEB_SERVER = DerivedContainer(
+    # snip
+    containerfile="""
+ENTRYPOINT ["/usr/bin/python3", "-m", "http.server"]
+HEALTHCHECK CMD curl --fail http://0.0.0.0:8000""",
+)
+
+@pytest.mark.parametrize("container", [WEB_SERVER], indirect=True)
+def test_server_up(container, container_runtime):
+    assert (
+	container_runtime.get_container_health(
+	    container.container_id
+	) == ContainerHealth.HEALTHY
+    )
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgccd05f9-split">
+
+<div class="org-src-container">
+
+<pre   ><code class="python" >WEB_SERVER_2 = DerivedContainer(
+    # snip
+    # don't wait for healtcheck
+    healthcheck_timeout=timedelta(seconds=-1),
+)
+
+@pytest.mark.parametrize("container", [WEB_SERVER_2], indirect=True)
+def test_server_up(container, container_runtime):
+    assert (
+	container_runtime.get_container_health(
+	    container.container_id
+	) == ContainerHealth.STARTING
+    )
+</code></pre>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org4d92ccb">
+<h2 id="org4d92ccb">Users</h2>
+<ul>
+<li class="fragment appear"><a href="https://github.com/SUSE/BCI-tests/">BCI testsuite</a></li>
+<li class="fragment appear"><a href="https://github.com/OSInside/kiwi/tree/master/test/scripts">kiwi image builder scripts</a></li>
+<li class="fragment appear"><a href="https://github.com/openSUSE/obs-service-replace_using_package_version/tree/master/integration_tests"><code>obs-service-replace_using_package_version</code> integration tests</a></li>
+<li class="fragment appear"><a href="https://github.com/openSUSE/obs-scm-bridge/tree/main/test"><code>obs-scm-bridge</code> integration tests</a></li>
+<li class="fragment appear"><a href="https://github.com/openSUSE/obs-service-node_modules/blob/master/test_node_modules_download.py"><code>obs-service-node_modules</code> smoke test</a></li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org913ba2c">
+<h2 id="org913ba2c">Thanks!</h2>
+<ul>
+<li><a href="https://github.com/evrardjp">Jean-Philippe Evrard</a></li>
+<li>QAC Team, especially Jose Lausuch and Felix Niederwanger</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org8aa5f1b">
+<h2 id="org8aa5f1b">Give it a try!</h2>
+<p>
+ <i class="fab fa-github"></i> <a href="https://github.com/dcermak/pytest_container"><code>dcermak/pytest_container</code></a>
+</p>
+
+<p>
+Docs: <a href="https://dcermak.github.io/pytest_container/index.html"><code>dcermak.github.io/pytest_container</code></a>
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org25340e2">
+<h2 id="org25340e2">Questions?</h2>
+<p class="fragment (appear)">
+Answers!
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgce8eccc">
+<h2 id="orgce8eccc">What would you like to see?</h2>
+<p class="fragment (appear)">
+👉 <a href="https://github.com/dcermak/pytest_container/issues" class="fragment (appear)"><code>github.com/dcermak/pytest_container/issues</code></a>
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org68b1666">
+<h2 id="org68b1666">Legal</h2>
+<ul>
+<li><a href="https://revealjs.com/">reveal.js</a> MIT</li>
+<li><a href="https://fontawesome.com/">Font Awesome</a> CC-BY-4.0 and SIL OFL 1.1 and MIT</li>
+<li><a href="https://github.com/dcermak/pytest_container/blob/main/LICENSE"><code>pytest_container</code></a> LGPL-2.1-or-later</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="./node_modules/reveal.js/dist/reveal.js"></script>
+<script src="./node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="./node_modules/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealHighlight, RevealNotes, history],
+transition: 'none', hash: true
+});
+
+</script>
+</body>
+</html>
