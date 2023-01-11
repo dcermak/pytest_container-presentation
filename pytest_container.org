@@ -52,6 +52,7 @@ Dan Čermák
 - @@html: <i class="fa-solid fa-broom"></i>@@ create and cleanup container volumes & bind mounts
 - @@html: <i class="fa-solid fa-boxes-stacked"></i>@@ run the same test on multiple container images
 - supports @@html:<i class="fa-brands fa-docker"></i>@@ docker and podman transparently
+- works with Python 3.6+ and on =x86_64=, =aarch64=, =s390x=, =ppcle64=
 
 * Basic Example
 #+ATTR_REVEAL: :code_attribs data-line-numbers='1-2|4-6|9-11'
