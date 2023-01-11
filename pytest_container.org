@@ -307,7 +307,9 @@ pytest -vv -- -n auto
 
 @@html: <i class="fab fa-github"></i>@@ [[https://github.com/dcermak/pytest_container][=dcermak/pytest_container=]]
 
-Docs: [[https://dcermak.github.io/pytest_container/index.html][=dcermak.github.io/pytest_container=]]
+@@html:<i class="fa-solid fa-book"></i>@@ [[https://dcermak.github.io/pytest_container/index.html][=dcermak.github.io/pytest_container=]]
+
+@@html:<i class="fa-solid fa-person-chalkboard"></i>@@ [[https://dcermak.github.io/pytest_container-presentation/pytest_container.html][=dcermak.github.io/pytest_container-presentation=]]
 
 
 * Questions?
