@@ -39,8 +39,8 @@ CC BY 4.0 <i class="fab fa-creative-commons"></i> <i class="fab fa-creative-comm
 </section>
 
 <section>
-<section id="slide-org2ef3715">
-<h2 id="org2ef3715">who -u</h2>
+<section id="slide-org1c10ca2">
+<h2 id="org1c10ca2">who -u</h2>
 <p>
 Dan Čermák
 </p>
@@ -64,8 +64,8 @@ Dan Čermák
 </section>
 </section>
 <section>
-<section id="slide-orge6d3278">
-<h2 id="orge6d3278">Sales pitch</h2>
+<section id="slide-org457a559">
+<h2 id="org457a559">Sales pitch</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-cloud-sun-rain"></i> shell scripts are brittle</li>
 <li class="fragment appear">use <a href="https://testinfra.readthedocs.io/">testinfra</a> for convenience</li>
@@ -74,18 +74,18 @@ Dan Čermák
 <li class="fragment appear">find &amp; bind free ports</li>
 <li class="fragment appear"><i class="fa-solid fa-broom"></i> create and cleanup container volumes &amp; bind mounts</li>
 <li class="fragment appear"><i class="fa-solid fa-boxes-stacked"></i> run the same test on multiple container images</li>
+<li class="fragment appear">supports <i class="fa-brands fa-docker"></i> docker and podman transparently</li>
 
 </ul>
-
 
 </section>
 </section>
 <section>
-<section id="slide-orgb47cde0">
-<h2 id="orgb47cde0">Basic Example</h2>
+<section id="slide-orgf9a8747">
+<h2 id="orgf9a8747">Basic Example</h2>
 <div class="org-src-container">
 
-<pre   ><code class="python" >import pytest
+<pre   ><code class="python" data-line-numbers='1-2|4-6|9-11'>import pytest
 from pytest_container import Container, ContainerData
 
 TW = Container(
@@ -103,8 +103,8 @@ def test_etc_os_release_present(container: ContainerData):
 </section>
 </section>
 <section>
-<section id="slide-org633e8eb">
-<h2 id="org633e8eb">Use Cases</h2>
+<section id="slide-org0e76e7b">
+<h2 id="org0e76e7b">Use Cases</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-box-open"></i> system tests of base containers</li>
 <li class="fragment appear"><i class="fa-solid fa-database"></i> test applications inside containers</li>
@@ -116,8 +116,8 @@ def test_etc_os_release_present(container: ContainerData):
 </section>
 </section>
 <section>
-<section id="slide-org7fa9525">
-<h2 id="org7fa9525"><code>pytest</code> basics</h2>
+<section id="slide-orgfbace59">
+<h2 id="orgfbace59"><code>pytest</code> basics</h2>
 <ul>
 <li data-fragment-index="1" class="fragment appear"><i class="fa-brands fa-python"></i> Python testing framework</li>
 <li data-fragment-index="2" class="fragment appear">executes all functions called <code>test_*</code></li>
@@ -151,16 +151,16 @@ def test_foo(x: int, y: int):
 </section>
 </section>
 <section>
-<section id="slide-org23f6d37">
-<h2 id="org23f6d37">Usage examples</h2>
-<div class="outline-text-2" id="text-org23f6d37">
+<section id="slide-org9eef429">
+<h2 id="org9eef429">Usage examples</h2>
+<div class="outline-text-2" id="text-org9eef429">
 </div>
 </section>
-<section id="slide-orga9ac688">
-<h3 id="orga9ac688">Build a new container for tests</h3>
+<section id="slide-org5bf6abc">
+<h3 id="org5bf6abc">Build a new container for tests</h3>
 <div class="org-src-container">
 
-<pre   ><code class="python" >WEB_SERVER = DerivedContainer(
+<pre   ><code class="python" data-line-numbers='2|3-6|1-7|9-11'>WEB_SERVER = DerivedContainer(
     base="registry.opensuse.org/opensuse/leap:15.4",
     containerfile="""RUN zypper -n in python3 \
     &amp;&amp; echo "Hello Green World!" &gt; index.html
@@ -176,15 +176,15 @@ def test_python_installed(container: ContainerData):
 
 
 </section>
-<section id="slide-org6bf74e1">
-<h3 id="org6bf74e1">Run mutable tests</h3>
+<section id="slide-org98f50b3">
+<h3 id="org98f50b3">Run mutable tests</h3>
 <p>
 use the <code>container_per_test</code> fixture:
 </p>
 
 <div class="org-src-container">
 
-<pre   ><code class="python" >@pytest.mark.parametrize(
+<pre   ><code class="python" data-line-numbers='4,11|1-5|8-14'>@pytest.mark.parametrize(
     "container_per_test", [TW], indirect=True
 )
 def test_rm_rf(container_per_test):
@@ -203,14 +203,15 @@ def test_uninstall_zypper(container_per_test):
 
 
 </section>
-<section id="slide-org75d4d17">
-<h3 id="org75d4d17">Use the same containers globally</h3>
+<section id="slide-org99331d7">
+<h3 id="org99331d7">Use the same containers globally</h3>
 <p>
 use the <code>auto_container</code> / <code>auto_container_per_test</code> fixtures:
 </p>
+
 <div class="org-src-container">
 
-<pre   ><code class="python" >CONTAINER_IMAGES = [TW, LEAP, SLE]
+<pre   ><code class="python" data-line-numbers='1|4,7'>CONTAINER_IMAGES = [TW, LEAP, SLE]
 
 
 def test_etc_os_release(auto_container): ...
@@ -222,11 +223,11 @@ def test_zypper_rm_works(auto_container_per_test): ...
 
 
 </section>
-<section id="slide-orgec29cf9">
-<h3 id="orgec29cf9">Dependencies between containers</h3>
+<section id="slide-org3949ba9">
+<h3 id="org3949ba9">Dependencies between containers</h3>
 <div class="org-src-container">
 
-<pre   ><code class="python" >TW = Container(
+<pre   ><code class="python" data-line-numbers='1-3|4-7|8-11|13,15'>TW = Container(
     url="registry.opensuse.org/opensuse/tumbleweed:latest"
 )
 NGINX = DerivedContainer(
@@ -246,11 +247,11 @@ def test_nginx(auto_container): ...
 
 
 </section>
-<section id="slide-orgf50b7c7">
-<h3 id="orgf50b7c7">Get a free port on the host</h3>
+<section id="slide-org1580356">
+<h3 id="org1580356">Get a free port on the host</h3>
 <div class="org-src-container">
 
-<pre   ><code class="python" >WEB_SERVER = DerivedContainer(
+<pre   ><code class="python" data-line-numbers='3|1-4|6-7|10|6-12'>WEB_SERVER = DerivedContainer(
     # snip
     forwarded_ports=[PortForwarding(container_port=8000)],
 )
@@ -267,11 +268,11 @@ def test_port_forward(container: ContainerData, host):
 
 
 </section>
-<section id="slide-org968f40b">
-<h3 id="org968f40b">Container Volumes</h3>
+<section id="slide-org72be4b2">
+<h3 id="org72be4b2">Container Volumes</h3>
 <div class="org-src-container">
 
-<pre   ><code class="python" >ROOTDIR_BIND_MOUNTED = DerivedContainer(
+<pre   ><code class="python" data-line-numbers='4|3-5|1-6|9-12|13|9-14'>ROOTDIR_BIND_MOUNTED = DerivedContainer(
     base="registry.opensuse.org/opensuse/tumbleweed",
     volume_mounts=[
 	BindMount("/src/", host_path=get_rootdir())
@@ -290,16 +291,17 @@ def test_bind_mount_cwd(container: ContainerData):
 
 
 </section>
-<section id="slide-org7c9093c">
-<h3 id="org7c9093c"><code>HEALTHCHECK</code></h3>
+<section id="slide-orgd103751">
+<h3 id="orgd103751"><code>HEALTHCHECK</code></h3>
 <div class="org-src-container">
 
-<pre   ><code class="python" >WEB_SERVER = DerivedContainer(
+<pre   ><code class="python" data-line-numbers='5|3-5|1-6|9-10|12-14|9-15'>WEB_SERVER = DerivedContainer(
     # snip
     containerfile="""
 ENTRYPOINT ["/usr/bin/python3", "-m", "http.server"]
 HEALTHCHECK CMD curl --fail http://0.0.0.0:8000""",
 )
+
 
 @pytest.mark.parametrize("container", [WEB_SERVER], indirect=True)
 def test_server_up(container, container_runtime):
@@ -312,15 +314,16 @@ def test_server_up(container, container_runtime):
 </div>
 
 </section>
-<section id="slide-org7c9093c-split">
+<section id="slide-orgd103751-split">
 
 <div class="org-src-container">
 
-<pre   ><code class="python" >WEB_SERVER_2 = DerivedContainer(
+<pre   ><code class="python" data-line-numbers='4|1-5|11-13'>WEB_SERVER_2 = DerivedContainer(
     # snip
     # don't wait for healtcheck
     healthcheck_timeout=timedelta(seconds=-1),
 )
+
 
 @pytest.mark.parametrize("container", [WEB_SERVER_2], indirect=True)
 def test_server_up(container, container_runtime):
@@ -334,10 +337,35 @@ def test_server_up(container, container_runtime):
 
 
 </section>
+<section id="slide-org8fc1e37">
+<h3 id="org8fc1e37">Pick the container engine</h3>
+<div class="org-src-container">
+
+<pre   ><code class="bash" >export CONTAINER_RUNTIME=docker
+pytest -vv
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-orgb78341c">
+<h3 id="orgb78341c">Run tests in parallel</h3>
+<div class="org-src-container">
+
+<pre   ><code class="bash" data-line-numbers='1|3|5'>pip install pytest-xdist
+# or
+poetry add --dev pytest-xdist
+
+pytest -vv -- -n auto
+</code></pre>
+</div>
+
+
+</section>
 </section>
 <section>
-<section id="slide-org4ea54dc">
-<h2 id="org4ea54dc">Users</h2>
+<section id="slide-org1f29d0c">
+<h2 id="org1f29d0c">Users</h2>
 <ul>
 <li class="fragment appear"><a href="https://github.com/SUSE/BCI-tests/">BCI testsuite</a></li>
 <li class="fragment appear"><a href="https://github.com/OSInside/kiwi/tree/master/test/scripts">kiwi image builder scripts</a></li>
@@ -351,11 +379,11 @@ def test_server_up(container, container_runtime):
 </section>
 </section>
 <section>
-<section id="slide-org52afd40">
-<h2 id="org52afd40">Thanks!</h2>
+<section id="slide-orga22507d">
+<h2 id="orga22507d">Thanks!</h2>
 <ul>
 <li><a href="https://github.com/evrardjp">Jean-Philippe Evrard</a></li>
-<li>QAC Team, especially Jose Lausuch and Felix Niederwanger</li>
+<li>QAC Team, especially José Lausuch and Felix Niederwanger</li>
 
 </ul>
 
@@ -363,22 +391,26 @@ def test_server_up(container, container_runtime):
 </section>
 </section>
 <section>
-<section id="slide-orgf8f429e">
-<h2 id="orgf8f429e">Give it a try!</h2>
+<section id="slide-org59275e8">
+<h2 id="org59275e8">Give it a try!</h2>
 <p>
  <i class="fab fa-github"></i> <a href="https://github.com/dcermak/pytest_container"><code>dcermak/pytest_container</code></a>
 </p>
 
 <p>
-Docs: <a href="https://dcermak.github.io/pytest_container/index.html"><code>dcermak.github.io/pytest_container</code></a>
+<i class="fa-solid fa-book"></i> <a href="https://dcermak.github.io/pytest_container/index.html"><code>dcermak.github.io/pytest_container</code></a>
+</p>
+
+<p>
+<i class="fa-solid fa-person-chalkboard"></i> <a href="https://dcermak.github.io/pytest_container-presentation/pytest_container.html"><code>dcermak.github.io/pytest_container-presentation</code></a>
 </p>
 
 
 </section>
 </section>
 <section>
-<section id="slide-org61ffd02">
-<h2 id="org61ffd02">Questions?</h2>
+<section id="slide-org9739cce">
+<h2 id="org9739cce">Questions?</h2>
 <p class="fragment (appear)">
 Answers!
 </p>
@@ -387,18 +419,18 @@ Answers!
 </section>
 </section>
 <section>
-<section id="slide-org5393d3e">
-<h2 id="org5393d3e">What would you like to see?</h2>
-<p class="fragment (appear)">
-👉 <a href="https://github.com/dcermak/pytest_container/issues" class="fragment (appear)"><code>github.com/dcermak/pytest_container/issues</code></a>
+<section id="slide-org1ad20a3">
+<h2 id="org1ad20a3">What would you like to see?</h2>
+<p data-fragment-index="1" class="fragment appear">
+👉 <a href="https://github.com/dcermak/pytest_container/issues" data-fragment-index="1" class="fragment appear"><code>github.com/dcermak/pytest_container/issues</code></a>
 </p>
 
 
 </section>
 </section>
 <section>
-<section id="slide-orgcb45fb2">
-<h2 id="orgcb45fb2">Legal</h2>
+<section id="slide-org9be54c0">
+<h2 id="org9be54c0">Legal</h2>
 <ul>
 <li><a href="https://revealjs.com/">reveal.js</a> MIT</li>
 <li><a href="https://fontawesome.com/">Font Awesome</a> CC-BY-4.0 and SIL OFL 1.1 and MIT</li>
