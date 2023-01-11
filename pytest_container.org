@@ -54,7 +54,7 @@ Dan Čermák
 - supports @@html:<i class="fa-brands fa-docker"></i>@@ docker and podman transparently
 
 * Basic Example
-
+#+ATTR_REVEAL: :code_attribs data-line-numbers='1-2|4-6|9-11'
 #+begin_src python
 import pytest
 from pytest_container import Container, ContainerData
@@ -106,9 +106,9 @@ def test_foo(x: int, y: int):
 
 * Usage examples
 
-
 ** Build a new container for tests
 
+#+ATTR_REVEAL: :code_attribs data-line-numbers='2|3-6|1-7|9-11'
 #+begin_src python
 WEB_SERVER = DerivedContainer(
     base="registry.opensuse.org/opensuse/leap:15.4",
@@ -128,6 +128,7 @@ def test_python_installed(container: ContainerData):
 
 use the ~container_per_test~ fixture:
 
+#+ATTR_REVEAL: :code_attribs data-line-numbers='4,11|1-5|8-14'
 #+begin_src python
 @pytest.mark.parametrize(
     "container_per_test", [TW], indirect=True
@@ -149,6 +150,8 @@ def test_uninstall_zypper(container_per_test):
 ** Use the same containers globally
 
 use the ~auto_container~ / ~auto_container_per_test~ fixtures:
+
+#+ATTR_REVEAL: :code_attribs data-line-numbers='1|4,7'
 #+begin_src python
 CONTAINER_IMAGES = [TW, LEAP, SLE]
 
@@ -162,6 +165,7 @@ def test_zypper_rm_works(auto_container_per_test): ...
 
 ** Dependencies between containers
 
+#+ATTR_REVEAL: :code_attribs data-line-numbers='1-3|4-7|8-11|13,15'
 #+begin_src python
 TW = Container(
     url="registry.opensuse.org/opensuse/tumbleweed:latest"
@@ -183,6 +187,7 @@ def test_nginx(auto_container): ...
 
 ** Get a free port on the host
 
+#+ATTR_REVEAL: :code_attribs data-line-numbers='3|1-4|6-7|10|6-12'
 #+begin_src python
 WEB_SERVER = DerivedContainer(
     # snip
@@ -201,6 +206,7 @@ def test_port_forward(container: ContainerData, host):
 
 ** Container Volumes
 
+#+ATTR_REVEAL: :code_attribs data-line-numbers='4|3-5|1-6|9-12|13|9-14'
 #+begin_src python
 ROOTDIR_BIND_MOUNTED = DerivedContainer(
     base="registry.opensuse.org/opensuse/tumbleweed",
@@ -221,6 +227,7 @@ def test_bind_mount_cwd(container: ContainerData):
 
 ** =HEALTHCHECK=
 
+#+ATTR_REVEAL: :code_attribs data-line-numbers='5|3-5|1-6|9-10|12-14|9-15'
 #+begin_src python
 WEB_SERVER = DerivedContainer(
     # snip
@@ -228,6 +235,7 @@ WEB_SERVER = DerivedContainer(
 ENTRYPOINT ["/usr/bin/python3", "-m", "http.server"]
 HEALTHCHECK CMD curl --fail http://0.0.0.0:8000""",
 )
+
 
 @pytest.mark.parametrize("container", [WEB_SERVER], indirect=True)
 def test_server_up(container, container_runtime):
@@ -240,12 +248,14 @@ def test_server_up(container, container_runtime):
 
 #+REVEAL: split
 
+#+ATTR_REVEAL: :code_attribs data-line-numbers='4|1-5|11-13'
 #+begin_src python
 WEB_SERVER_2 = DerivedContainer(
     # snip
     # don't wait for healtcheck
     healthcheck_timeout=timedelta(seconds=-1),
 )
+
 
 @pytest.mark.parametrize("container", [WEB_SERVER_2], indirect=True)
 def test_server_up(container, container_runtime):
