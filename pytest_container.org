@@ -288,7 +288,7 @@ pytest -vv
 * Thanks!
 
 - [[https://github.com/evrardjp][Jean-Philippe Evrard]]
-- QAC Team, especially Jose Lausuch and Felix Niederwanger
+- QAC Team, especially José Lausuch and Felix Niederwanger
 
 
 * Give it a try!
