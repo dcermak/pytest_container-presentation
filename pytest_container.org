@@ -300,7 +300,7 @@ pytest -vv -- -n auto
 * Thanks!
 
 - [[https://github.com/evrardjp][Jean-Philippe Evrard]]
-- QAC Team, especially José Lausuch and Felix Niederwanger
+- QE-C Team, especially José Lausuch and Felix Niederwanger
 
 
 * Give it a try!
