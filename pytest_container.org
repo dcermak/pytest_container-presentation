@@ -51,7 +51,7 @@ Dan Čermák
 - find & bind free ports
 - @@html: <i class="fa-solid fa-broom"></i>@@ create and cleanup container volumes & bind mounts
 - @@html: <i class="fa-solid fa-boxes-stacked"></i>@@ run the same test on multiple container images
-
+- supports @@html:<i class="fa-brands fa-docker"></i>@@ docker and podman transparently
 
 * Basic Example
 
@@ -254,6 +254,14 @@ def test_server_up(container, container_runtime):
             container.container_id
         ) == ContainerHealth.STARTING
     )
+#+end_src
+
+
+** Pick the container engine
+
+#+begin_src bash
+export CONTAINER_RUNTIME=docker
+pytest -vv
 #+end_src
 
 
