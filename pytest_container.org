@@ -275,6 +275,18 @@ pytest -vv
 #+end_src
 
 
+** Run tests in parallel
+
+#+ATTR_REVEAL: :code_attribs data-line-numbers='1|3|5'
+#+begin_src bash
+pip install pytest-xdist
+# or
+poetry add --dev pytest-xdist
+
+pytest -vv -- -n auto
+#+end_src
+
+
 * Users
 
 #+ATTR_REVEAL: :frag (appear)
