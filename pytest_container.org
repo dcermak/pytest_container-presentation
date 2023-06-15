@@ -207,7 +207,7 @@ def test_uninstall_zypper(container_per_test):
 #+end_src
 
 
-** Use the same containers globally
+** Use the same container globally
 
 #+ATTR_REVEAL: :frag (appear) :frag_idx 1
 use the ~auto_container~ / ~auto_container_per_test~ fixtures:
