@@ -343,7 +343,7 @@ def test_server_up(container, container_runtime):
 #+end_src
 
 
-** Pick the container engine
+** Pick the Container Engine
 
 #+begin_src bash
 export CONTAINER_RUNTIME=docker
