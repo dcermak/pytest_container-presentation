@@ -301,6 +301,10 @@ WITH_VAR_LOG_VOLUME = DerivedContainer(
 
 ** =HEALTHCHECK=
 
+#+begin_notes
+- will wait for healthcheck
+#+end_notes
+
 #+ATTR_REVEAL: :code_attribs data-line-numbers='5|3-5|1-6|9-10|12-14|9-15'
 #+begin_src python
 WEB_SERVER = DerivedContainer(
