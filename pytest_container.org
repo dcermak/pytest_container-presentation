@@ -29,7 +29,7 @@ Dan Čermák
 
 @@html: <div style="float:center">@@
 @@html: <table class="who-table">@@
-@@html: <tr><td><i class="fab fa-suse"></i></td><td> Software Developer @SUSE</td></tr>@@
+@@html: <tr><td><i class="fab fa-suse"></i></td><td> BCI Release Engineer @SUSE</td></tr>@@
 @@html: <tr><td><i class="fab fa-fedora"></i></td><td> i3 SIG, Package maintainer</td></tr>@@
 @@html: <tr><td><i class="far fa-heart"></i></td><td> Developer Tools, Testing and Documentation, Home Automation</td></tr>@@
 @@html: <tr></tr>@@
@@ -37,6 +37,7 @@ Dan Čermák
 @@html: <tr><td><i class="fa-solid fa-globe"></i></td><td> <a href="https://dancermak.name/">https://dancermak.name</a></td></tr>@@
 @@html: <tr><td><i class="fab fa-github"></i></td><td> <a href="https://github.com/dcermak/">dcermak</a> / <a href="https://github.com/D4N/">D4N</a></td></tr>@@
 @@html: <tr><td><i class="fab fa-mastodon"></i></td><td> <a href="https://mastodon.social/@Defolos">@Defolos@mastodon.social</a></td></tr>@@
+@@html: <tr><td><i class="fab fa-twitter"></i></td><td> <a href="https://twitter.com/@DefolosDC">@DefolosDC</a></td></tr>@@
 @@html: </table>@@
 @@html: </div>@@
 
