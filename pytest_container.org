@@ -1,6 +1,6 @@
 # -*- org-confirm-babel-evaluate: nil; -*-
 #+AUTHOR: Dan Čermák
-#+DATE: June 16 2022
+#+DATE: February 3 2024
 #+EMAIL: dcermak@suse.com
 #+TITLE: =pytest_container=
 #+SUBTITLE: Testing Container Images with Python and Pytest
@@ -19,7 +19,7 @@
 #+REVEAL_TITLE_SLIDE: <h2 class="title">%t</h2>
 #+REVEAL_TITLE_SLIDE: <p class="subtitle" style="color: Gray;">%s</p>
 #+REVEAL_TITLE_SLIDE: <p class="author">%a</p>
-#+REVEAL_TITLE_SLIDE: <div style="float:left"><a href="https://www.devconf.info/cz/" target="_blank"><img src="./media/devconf-cz-bw.svg" height="50px"/></a></div>
+#+REVEAL_TITLE_SLIDE: <div style="float:left"><a href="https://fosdem.org/2024/" target="_blank"><img src="./media/FOSDEM_logo.svg" height="50px" style="margin-bottom:-12px"/> FOSDEM 2024</a></div>
 #+REVEAL_TITLE_SLIDE: <div style="float:right;font-size:35px;"><p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#"><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
 #+REVEAL_TITLE_SLIDE: CC BY 4.0 <i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i></a></p></div>
 
@@ -29,15 +29,14 @@ Dan Čermák
 
 @@html: <div style="float:center">@@
 @@html: <table class="who-table">@@
-@@html: <tr><td><i class="fab fa-suse"></i></td><td> BCI Release Engineer @SUSE</td></tr>@@
+@@html: <tr><td><i class="fab fa-suse"></i></td><td> Software Developer @SUSE</td></tr>@@
 @@html: <tr><td><i class="fab fa-fedora"></i></td><td> i3 SIG, Package maintainer</td></tr>@@
 @@html: <tr><td><i class="far fa-heart"></i></td><td> Developer Tools, Testing and Documentation, Home Automation</td></tr>@@
 @@html: <tr></tr>@@
 @@html: <tr></tr>@@
 @@html: <tr><td><i class="fa-solid fa-globe"></i></td><td> <a href="https://dancermak.name/">https://dancermak.name</a></td></tr>@@
-@@html: <tr><td><i class="fab fa-github"></i></td><td> <a href="https://github.com/dcermak/">dcermak</a> / <a href="https://github.com/D4N/">D4N</a></td></tr>@@
+@@html: <tr><td><i class="fab fa-github"></i></td><td> <a href="https://github.com/dcermak/">dcermak</a> </td></tr>@@
 @@html: <tr><td><i class="fab fa-mastodon"></i></td><td> <a href="https://mastodon.social/@Defolos">@Defolos@mastodon.social</a></td></tr>@@
-@@html: <tr><td><i class="fab fa-twitter"></i></td><td> <a href="https://twitter.com/@DefolosDC">@DefolosDC</a></td></tr>@@
 @@html: </table>@@
 @@html: </div>@@
 
@@ -403,21 +402,13 @@ pytest -vv -- -n auto
 @@html:<i class="fa-solid fa-person-chalkboard"></i>@@ [[https://dcermak.github.io/pytest_container-presentation/pytest_container.html][=dcermak.github.io/pytest_container-presentation=]]
 
 
-* Questions?
-
-#+ATTR_REVEAL: :frag (appear)
-Answers!
-
-
 * What would you like to see?
 
 #+ATTR_REVEAL: :frag appear :frag_idx 1
 👉 [[https://github.com/dcermak/pytest_container/issues][=github.com/dcermak/pytest_container/issues=]]
 
 
-* Legal
+* Questions?
 
-- [[https://revealjs.com/][reveal.js]] MIT
-- [[https://fontawesome.com/][Font Awesome]] CC-BY-4.0 and SIL OFL 1.1 and MIT
-- [[https://github.com/dcermak/pytest_container/blob/main/LICENSE][=pytest_container=]] LGPL-2.1-or-later
-- [[https://containerplumbing.org/assets/images/logo-horizontal-darkbg.svg][Container Plumbing Days logo]] CC-BY-SA
+#+ATTR_REVEAL: :frag (appear)
+Answers!
