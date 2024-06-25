@@ -367,7 +367,7 @@ pytest -vv
 #+begin_src bash
 pip install pytest-xdist
 # or
-poetry add --dev pytest-xdist
+poetry add --group dev pytest-xdist
 
 pytest -vv -- -n auto
 #+end_src
