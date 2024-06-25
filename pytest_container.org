@@ -403,7 +403,8 @@ pytest -vv -- -n auto
 * Thanks!
 
 - [[https://github.com/evrardjp][Jean-Philippe Evrard]]
-- QE-C Team, especially José Lausuch and Felix Niederwanger
+- QE-C Team, especially [[https://feldspaten.org/][Felix Niederwanger]] and [[http://www.instagram.com/bake_with_jose][José Lausuch]]
+- All the [[https://github.com/dcermak/pytest_container/graphs/contributors][contributors & testers]]
 
 
 * Give it a try!
