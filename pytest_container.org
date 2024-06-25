@@ -92,30 +92,38 @@ def test_etc_os_release_present(container: ContainerData):
 - @@html: <i class="fa-solid fa-boxes-stacked"></i>@@ run tests of your application on multiple OS'
 
 
-* ~pytest~ basics
+* ~pytest~ fixtures
 
-#+ATTR_REVEAL: :frag (appear appear appear) :frag_idx (1 2 3)
-- @@html: <i class="fa-brands fa-python"></i>@@ Python testing framework
-- executes all functions called ~test_*~
+#+ATTR_REVEAL: :frag (appear) :frag_idx (1)
 - fixtures for setup & teardown @@html: <i class="fa-solid fa-broom"></i>@@
 
 
-#+ATTR_REVEAL: :frag (appear) :frag_idx 3
+#+ATTR_REVEAL: :frag (appear) :frag_idx 2
 #+begin_src python
 def test_ehlo(smtp_connection):
     response, msg = smtp_connection.ehlo()
     assert response == 250
 #+end_src
 
-#+ATTR_REVEAL: :frag (appear) :frag_idx (4)
+#+ATTR_REVEAL: :frag (appear) :frag_idx (3)
 - test [[https://docs.pytest.org/en/stable/how-to/parametrize.html][parametrization]]
 
-#+ATTR_REVEAL: :frag (appear) :frag_idx 4
+#+ATTR_REVEAL: :frag (appear) :frag_idx 3
 #+begin_src python
 @pytest.mark.parametrize("x", [0, 1])
 @pytest.mark.parametrize("y", [2, 3])
 def test_foo(x: int, y: int):
     # do something with x & y here
+#+end_src
+
+#+ATTR_REVEAL: :frag (appear) :frag_idx (4)
+- indirect parametrization of fixtures
+
+#+ATTR_REVEAL: :frag (appear) :frag_idx 4
+#+begin_src python
+@pytest.mark.parametrize("smtp_connection", [25], indirect=True)
+def test_ehlo(smtp_connection):
+    pass
 #+end_src
 
 * Usage examples
