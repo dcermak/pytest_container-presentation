@@ -1,6 +1,6 @@
 # -*- org-confirm-babel-evaluate: nil; -*-
 #+AUTHOR: Dan Čermák
-#+DATE: February 3 2024
+#+DATE: June 28, 2024
 #+EMAIL: dcermak@suse.com
 #+TITLE: =pytest_container=
 #+SUBTITLE: Testing Container Images with Python and Pytest
@@ -19,7 +19,7 @@
 #+REVEAL_TITLE_SLIDE: <h2 class="title">%t</h2>
 #+REVEAL_TITLE_SLIDE: <p class="subtitle" style="color: Gray;">%s</p>
 #+REVEAL_TITLE_SLIDE: <p class="author">%a</p>
-#+REVEAL_TITLE_SLIDE: <div style="float:left"><a href="https://fosdem.org/2024/" target="_blank"><img src="./media/FOSDEM_logo.svg" height="50px" style="margin-bottom:-12px"/> FOSDEM 2024</a></div>
+#+REVEAL_TITLE_SLIDE: <div style="float:left"><a href="https://events.opensuse.org/conferences/oSC24" target="_blank"><img src="./media/osc24_logo.jpg" height="50px" style="margin-bottom:-12px"/>&nbsp; oSC24</a></div>
 #+REVEAL_TITLE_SLIDE: <div style="float:right;font-size:35px;"><p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#"><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
 #+REVEAL_TITLE_SLIDE: CC BY 4.0 <i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i></a></p></div>
 
