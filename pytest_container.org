@@ -417,13 +417,12 @@ pytest -vv -- -n auto
 @@html:<i class="fa-solid fa-person-chalkboard"></i>@@ [[https://dcermak.github.io/pytest_container-presentation/pytest_container.html][=dcermak.github.io/pytest_container-presentation=]]
 
 
-* What would you like to see?
-
-#+ATTR_REVEAL: :frag appear :frag_idx 1
-👉 [[https://github.com/dcermak/pytest_container/issues][=github.com/dcermak/pytest_container/issues=]]
-
-
 * Questions?
 
-#+ATTR_REVEAL: :frag (appear)
+#+ATTR_REVEAL: :frag appear
 Answers!
+
+#+ATTR_REVEAL: :frag appear
+Suggestions?
+#+ATTR_REVEAL: :frag appear
+👉 [[https://github.com/dcermak/pytest_container/issues][=github.com/dcermak/pytest_container/issues=]]
