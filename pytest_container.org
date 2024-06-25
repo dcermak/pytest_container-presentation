@@ -149,6 +149,28 @@ def test_python_installed(container: ContainerData):
     ).is_installed
 #+end_src
 
+** Dependencies between containers
+
+#+ATTR_REVEAL: :code_attribs data-line-numbers='1-3|4-7|8-11|13,15'
+#+begin_src python
+TW = Container(
+    url="registry.opensuse.org/opensuse/tumbleweed:latest"
+)
+NGINX = DerivedContainer(
+    base=TW,
+    containerfile="RUN zypper -n in nginx",
+)
+NGINX_DEBUG = DerivedContainer(
+    base=NGINX,
+    containerfile="RUN zypper -n in gdb nginx-debuginfo"
+)
+
+CONTAINER_IMAGES=[NGINX_DEBUG]
+
+def test_nginx(auto_container): ...
+#+end_src
+
+
 ** Get a free port on the host
 
 #+ATTR_REVEAL: :code_attribs data-line-numbers='3|1-4|6-9|12|6-14'
@@ -167,6 +189,54 @@ def test_port_forward(container: ContainerData, host):
         + str(container.forwarded_ports[0].host_port)
     )
     host.run_expect([0], cmd)
+#+end_src
+
+
+** =HEALTHCHECK=
+
+#+begin_notes
+- will wait for healthcheck
+#+end_notes
+
+#+ATTR_REVEAL: :code_attribs data-line-numbers='5|3-5|1-6|9-10|12-14|9-15'
+#+begin_src python
+WEB_SERVER = DerivedContainer(
+    # snip
+    containerfile="""
+ENTRYPOINT ["/usr/bin/python3", "-m", "http.server"]
+HEALTHCHECK CMD curl --fail http://0.0.0.0:8000""",
+)
+
+
+@pytest.mark.parametrize("container", [WEB_SERVER], indirect=True)
+def test_server_up(container, container_runtime):
+    assert (
+        container_runtime.get_container_health(
+            container.container_id
+        ) == ContainerHealth.HEALTHY
+    )
+#+end_src
+
+#+REVEAL: split
+
+#+ATTR_REVEAL: :frag (appear) :frag_idx 1
+Don't wait for the health check
+
+#+ATTR_REVEAL: :frag (appear) :frag_idx 2 :code_attribs data-line-numbers='3|1-4|10-12'
+#+begin_src python
+WEB_SERVER_2 = DerivedContainer(
+    # snip
+    healthcheck_timeout=timedelta(seconds=-1),
+)
+
+
+@pytest.mark.parametrize("container", [WEB_SERVER_2], indirect=True)
+def test_server_up(container, container_runtime):
+    assert (
+        container_runtime.get_container_health(
+            container.container_id
+        ) == ContainerHealth.STARTING
+    )
 #+end_src
 
 
@@ -213,46 +283,6 @@ def test_uninstall_zypper(container_per_test):
         [0], "rpm -e --nodeps zypper"
     )
 #+end_src
-
-
-** Use the same container globally
-
-#+ATTR_REVEAL: :frag (appear) :frag_idx 1
-use the ~auto_container~ / ~auto_container_per_test~ fixtures:
-
-#+ATTR_REVEAL: :frag (appear) :frag_idx 2 :code_attribs data-line-numbers='1|4,7'
-#+begin_src python
-CONTAINER_IMAGES = [TW, LEAP, SLE]
-
-
-def test_etc_os_release(auto_container): ...
-
-
-def test_zypper_rm_works(auto_container_per_test): ...
-#+end_src
-
-
-** Dependencies between containers
-
-#+ATTR_REVEAL: :code_attribs data-line-numbers='1-3|4-7|8-11|13,15'
-#+begin_src python
-TW = Container(
-    url="registry.opensuse.org/opensuse/tumbleweed:latest"
-)
-NGINX = DerivedContainer(
-    base=TW,
-    containerfile="RUN zypper -n in nginx",
-)
-NGINX_DEBUG = DerivedContainer(
-    base=NGINX,
-    containerfile="RUN zypper -n in gdb nginx-debuginfo"
-)
-
-CONTAINER_IMAGES=[NGINX_DEBUG]
-
-def test_nginx(auto_container): ...
-#+end_src
-
 
 ** 🔎 Inspect containers
 
@@ -307,53 +337,21 @@ WITH_VAR_LOG_VOLUME = DerivedContainer(
 #+end_src
 
 
-** =HEALTHCHECK=
-
-#+begin_notes
-- will wait for healthcheck
-#+end_notes
-
-#+ATTR_REVEAL: :code_attribs data-line-numbers='5|3-5|1-6|9-10|12-14|9-15'
-#+begin_src python
-WEB_SERVER = DerivedContainer(
-    # snip
-    containerfile="""
-ENTRYPOINT ["/usr/bin/python3", "-m", "http.server"]
-HEALTHCHECK CMD curl --fail http://0.0.0.0:8000""",
-)
-
-
-@pytest.mark.parametrize("container", [WEB_SERVER], indirect=True)
-def test_server_up(container, container_runtime):
-    assert (
-        container_runtime.get_container_health(
-            container.container_id
-        ) == ContainerHealth.HEALTHY
-    )
-#+end_src
-
-#+REVEAL: split
+** Use the same container globally
 
 #+ATTR_REVEAL: :frag (appear) :frag_idx 1
-Don't wait for the health check
+use the ~auto_container~ / ~auto_container_per_test~ fixtures:
 
-#+ATTR_REVEAL: :frag (appear) :frag_idx 2 :code_attribs data-line-numbers='3|1-4|10-12'
+#+ATTR_REVEAL: :frag (appear) :frag_idx 2 :code_attribs data-line-numbers='1|4,7'
 #+begin_src python
-WEB_SERVER_2 = DerivedContainer(
-    # snip
-    healthcheck_timeout=timedelta(seconds=-1),
-)
+CONTAINER_IMAGES = [TW, LEAP, SLE]
 
 
-@pytest.mark.parametrize("container", [WEB_SERVER_2], indirect=True)
-def test_server_up(container, container_runtime):
-    assert (
-        container_runtime.get_container_health(
-            container.container_id
-        ) == ContainerHealth.STARTING
-    )
+def test_etc_os_release(auto_container): ...
+
+
+def test_zypper_rm_works(auto_container_per_test): ...
 #+end_src
-
 
 ** Pick the Container Engine
 
