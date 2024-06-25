@@ -217,27 +217,27 @@ def test_server_up(container, container_runtime):
     )
 #+end_src
 
-#+REVEAL: split
+# #+REVEAL: split
 
-#+ATTR_REVEAL: :frag (appear) :frag_idx 1
-Don't wait for the health check
+# #+ATTR_REVEAL: :frag (appear) :frag_idx 1
+# Don't wait for the health check
 
-#+ATTR_REVEAL: :frag (appear) :frag_idx 2 :code_attribs data-line-numbers='3|1-4|10-12'
-#+begin_src python
-WEB_SERVER_2 = DerivedContainer(
-    # snip
-    healthcheck_timeout=timedelta(seconds=-1),
-)
+# #+ATTR_REVEAL: :frag (appear) :frag_idx 2 :code_attribs data-line-numbers='3|1-4|10-12'
+# #+begin_src python
+# WEB_SERVER_2 = DerivedContainer(
+#    # snip
+#    healthcheck_timeout=timedelta(seconds=-1),
+# )
 
 
-@pytest.mark.parametrize("container", [WEB_SERVER_2], indirect=True)
-def test_server_up(container, container_runtime):
-    assert (
-        container_runtime.get_container_health(
-            container.container_id
-        ) == ContainerHealth.STARTING
-    )
-#+end_src
+# @pytest.mark.parametrize("container", [WEB_SERVER_2], indirect=True)
+# def test_server_up(container, container_runtime):
+#     assert (
+#         container_runtime.get_container_health(
+#             container.container_id
+#         ) == ContainerHealth.STARTING
+#     )
+# #+end_src
 
 
 ** Create a Pod
