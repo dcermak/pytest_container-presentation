@@ -133,7 +133,7 @@ def test_ehlo(smtp_connection):
 #+ATTR_REVEAL: :code_attribs data-line-numbers='2|3-6|1-7|9-15'
 #+begin_src python
 WEB_SERVER = DerivedContainer(
-    base="registry.opensuse.org/opensuse/leap:15.4",
+    base="registry.opensuse.org/opensuse/leap:latest",
     containerfile="""RUN zypper -n in python3 \
     && echo "Hello Green World!" > index.html
 ENTRYPOINT ["/usr/bin/python3", "-m", "http.server"]
