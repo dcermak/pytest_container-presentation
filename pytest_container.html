@@ -34,14 +34,13 @@
 <section id="sec-title-slide"><h2 class="title"><code>pytest_container</code></h2>
 <p class="subtitle" style="color: Gray;">Testing Container Images with Python and Pytest</p>
 <p class="author">Dan Čermák</p>
-<div style="float:left"><a href="https://events.opensuse.org/conferences/oSC24" target="_blank"><img src="./media/osc24_logo.jpg" height="50px" style="margin-bottom:-12px"/>&nbsp; oSC24</a></div>
+<div style="float:left"><a href="https://events.opensuse.org/conferences/oSC25" target="_blank"><img src="./media/oSCon2025Logo.svg" height="80px" style="margin-bottom:-12px"/>&nbsp; oSC25</a></div>
 <div style="float:right;font-size:35px;"><p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#"><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
 CC BY 4.0 <i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i></a></p></div>
 </section>
-
 <section>
-<section id="slide-org67db617">
-<h2 id="org67db617">who -u</h2>
+<section id="slide-org14fab9e">
+<h2 id="org14fab9e">who -u</h2>
 <p>
 Dan Čermák
 </p>
@@ -60,13 +59,11 @@ Dan Čermák
  </table>
  </div>
 </p>
-
-
 </section>
 </section>
 <section>
-<section id="slide-orgaf0292d">
-<h2 id="orgaf0292d">Why Python and Pytest?</h2>
+<section id="slide-orgc4701d3">
+<h2 id="orgc4701d3">Why Python and Pytest?</h2>
 <p>
 When shell scripts are:
 </p>
@@ -76,13 +73,11 @@ When shell scripts are:
 <li class="fragment appear">everyone understands them</li>
 
 </ul>
-
-
 </section>
 </section>
 <section>
-<section id="slide-orgfa18a2b">
-<h2 id="orgfa18a2b">Sales pitch</h2>
+<section id="slide-orgcd5012d">
+<h2 id="orgcd5012d">Sales pitch</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-cloud-sun-rain"></i> shell scripts are brittle</li>
 <li class="fragment appear">automatically pull, build, launch &amp; cleanup containers  <i class="fa-solid fa-cloud-arrow-down"></i></li>
@@ -96,13 +91,11 @@ When shell scripts are:
 <li class="fragment appear">works with Python 3.6+ and on <code>x86_64</code>, <code>aarch64</code>, <code>s390x</code>, <code>ppcle64</code></li>
 
 </ul>
-
-
 </section>
 </section>
 <section>
-<section id="slide-org1d6f3f7">
-<h2 id="org1d6f3f7">Basic Example</h2>
+<section id="slide-orga32e781">
+<h2 id="orga32e781">Basic Example</h2>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-2|4-6|9-13'>import pytest
@@ -120,26 +113,22 @@ def test_etc_os_release_present(container: ContainerData):
     ).exists
 </code></pre>
 </div>
-
-
 </section>
 </section>
 <section>
-<section id="slide-org1f3689f">
-<h2 id="org1f3689f">Use Cases</h2>
+<section id="slide-org94a1817">
+<h2 id="org94a1817">Use Cases</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-box-open"></i> system tests of base containers</li>
 <li class="fragment appear"><i class="fa-solid fa-database"></i> test applications inside containers</li>
 <li class="fragment appear"><i class="fa-solid fa-boxes-stacked"></i> run tests of your application on multiple OS'</li>
 
 </ul>
-
-
 </section>
 </section>
 <section>
-<section id="slide-orgeb184fe">
-<h2 id="orgeb184fe"><code>pytest</code> fixtures</h2>
+<section id="slide-orgc26bfc3">
+<h2 id="orgc26bfc3"><code>pytest</code> fixtures</h2>
 <ul>
 <li data-fragment-index="1" class="fragment appear">fixtures for setup &amp; teardown  <i class="fa-solid fa-broom"></i></li>
 
@@ -180,17 +169,16 @@ def test_ehlo(smtp_connection):
     pass
 </code></pre>
 </div>
-
 </section>
 </section>
 <section>
-<section id="slide-orge27f4c5">
-<h2 id="orge27f4c5">Usage examples</h2>
-<div class="outline-text-2" id="text-orge27f4c5">
+<section id="slide-orgc7d44b6">
+<h2 id="orgc7d44b6">Usage examples</h2>
+<div class="outline-text-2" id="text-orgc7d44b6">
 </div>
 </section>
-<section id="slide-org5238099">
-<h3 id="org5238099">Build a new container for tests</h3>
+<section id="slide-orgb25c795">
+<h3 id="orgb25c795">Build a new container for tests</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='2|3-6|1-7|9-15'>WEB_SERVER = DerivedContainer(
@@ -210,10 +198,9 @@ def test_python_installed(container: ContainerData):
     ).is_installed
 </code></pre>
 </div>
-
 </section>
-<section id="slide-org949ebfa">
-<h3 id="org949ebfa">Dependencies between containers</h3>
+<section id="slide-orgb5185b9">
+<h3 id="orgb5185b9">Dependencies between containers</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-3|4-7|8-11|13,15'>TW = Container(
@@ -233,11 +220,9 @@ CONTAINER_IMAGES=[NGINX_DEBUG]
 def test_nginx(auto_container): ...
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-org7613dfa">
-<h3 id="org7613dfa">Get a free port on the host</h3>
+<section id="slide-org185baa8">
+<h3 id="org185baa8">Get a free port on the host</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='3|1-4|6-9|12|6-14'>WEB_SERVER = DerivedContainer(
@@ -256,11 +241,9 @@ def test_port_forward(container: ContainerData, host):
     host.run_expect([0], cmd)
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-org358c001">
-<h3 id="org358c001"><code>HEALTHCHECK</code></h3>
+<section id="slide-org48faaf5">
+<h3 id="org48faaf5"><code>HEALTHCHECK</code></h3>
 <aside class="notes">
 <ul>
 <li>will wait for healthcheck</li>
@@ -288,11 +271,9 @@ def test_server_up(container, container_runtime):
     )
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-orgf15d7fd">
-<h3 id="orgf15d7fd">Create a Pod</h3>
+<section id="slide-org7e71e2d">
+<h3 id="org7e71e2d">Create a Pod</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-4|2|3|6-9|10-14'>MEDIAWIKI_FPM_POD = Pod(
@@ -311,11 +292,9 @@ def test_port_forward(pod: PodData, host):
     host.run_expect([0], cmd)
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-org74ecb19">
-<h3 id="org74ecb19">Run mutable tests</h3>
+<section id="slide-org991f003">
+<h3 id="org991f003">Run mutable tests</h3>
 <p data-fragment-index="1" class="fragment (appear)">
 use the <code>container_per_test</code> fixture:
 </p>
@@ -338,10 +317,9 @@ def test_uninstall_zypper(container_per_test):
     )
 </code></pre>
 </div>
-
 </section>
-<section id="slide-org0e97151">
-<h3 id="org0e97151">🔎 Inspect containers</h3>
+<section id="slide-orge4c8f9a">
+<h3 id="orge4c8f9a">🔎 Inspect containers</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-4|5|7|7,8|7,8,10-13'>@pytest.mark.parametrize(
@@ -359,11 +337,9 @@ def test_inspect(container: ContainerData):
     )
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-org56d6e38">
-<h3 id="org56d6e38">Container Volumes</h3>
+<section id="slide-org72575b8">
+<h3 id="org72575b8">Container Volumes</h3>
 <p>
 Bind mounts
 </p>
@@ -387,7 +363,7 @@ def test_bind_mount_cwd(container: ContainerData):
 </div>
 
 </section>
-<section id="slide-org56d6e38-split">
+<section id="slide-org72575b8-split">
 
 <p>
 Container volumes
@@ -400,11 +376,9 @@ Container volumes
 )
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-orgab27429">
-<h3 id="orgab27429">Use the same container globally</h3>
+<section id="slide-org99c8a2b">
+<h3 id="org99c8a2b">Use the same container globally</h3>
 <p data-fragment-index="1" class="fragment (appear)">
 use the <code>auto_container</code> / <code>auto_container_per_test</code> fixtures:
 </p>
@@ -420,21 +394,18 @@ def test_etc_os_release(auto_container): ...
 def test_zypper_rm_works(auto_container_per_test): ...
 </code></pre>
 </div>
-
 </section>
-<section id="slide-orgaa2fce5">
-<h3 id="orgaa2fce5">Pick the Container Engine</h3>
+<section id="slide-org8234fa2">
+<h3 id="org8234fa2">Pick the Container Engine</h3>
 <div class="org-src-container">
 
 <pre   ><code class="bash" >export CONTAINER_RUNTIME=docker
 pytest -vv
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-org9c22f38">
-<h3 id="org9c22f38">Run tests in parallel</h3>
+<section id="slide-org9515bdf">
+<h3 id="org9515bdf">Run tests in parallel</h3>
 <div class="org-src-container">
 
 <pre   ><code class="bash" data-line-numbers='1|3|5'>pip install pytest-xdist
@@ -444,11 +415,9 @@ poetry add --group dev pytest-xdist
 pytest -vv -- -n auto
 </code></pre>
 </div>
-
-
 </section>
-<section id="slide-org8c1d628">
-<h3 id="org8c1d628">🧹 Automatic cleanup</h3>
+<section id="slide-orgec9a853">
+<h3 id="orgec9a853">🧹 Automatic cleanup</h3>
 <ul>
 <li class="fragment appear">containers</li>
 <li class="fragment appear">volumes</li>
@@ -457,39 +426,33 @@ pytest -vv -- -n auto
 <li class="fragment appear">⚠️Images and intermediate layers are retained ⚠️</li>
 
 </ul>
-
-
 </section>
 </section>
 <section>
-<section id="slide-org6773826">
-<h2 id="org6773826">Roadmap</h2>
+<section id="slide-orgbb6f604">
+<h2 id="orgbb6f604">Roadmap</h2>
 <ul>
 <li class="fragment appear">better entrypoint testing (<a href="https://github.com/dcermak/pytest_container/issues/206">#206</a>)</li>
 <li class="fragment appear">support for foreign architecture containers (<a href="https://github.com/dcermak/pytest_container/pull/183">#183</a>)</li>
 <li class="fragment appear">improved multistage build support (<a href="https://github.com/dcermak/pytest_container/issues/149">#149</a>)</li>
 
 </ul>
-
-
 </section>
 </section>
 <section>
-<section id="slide-org5cea292">
-<h2 id="org5cea292">Thanks!</h2>
+<section id="slide-org9e7e481">
+<h2 id="org9e7e481">Thanks!</h2>
 <ul>
 <li><a href="https://github.com/evrardjp">Jean-Philippe Evrard</a></li>
 <li>QE-C Team, especially <a href="https://feldspaten.org/">Felix Niederwanger</a> and <a href="http://www.instagram.com/bake_with_jose">José Lausuch</a></li>
 <li>All the <a href="https://github.com/dcermak/pytest_container/graphs/contributors">contributors &amp; testers</a></li>
 
 </ul>
-
-
 </section>
 </section>
 <section>
-<section id="slide-org8d37da3">
-<h2 id="org8d37da3">Give it a try!</h2>
+<section id="slide-org7cae307">
+<h2 id="org7cae307">Give it a try!</h2>
 <p>
 <img src="media/github-qr.svg" height="300px"/>
 </p>
@@ -505,13 +468,11 @@ pytest -vv -- -n auto
 <p>
 <i class="fa-solid fa-person-chalkboard"></i> <a href="https://dcermak.github.io/pytest_container-presentation/pytest_container.html"><code>dcermak.github.io/pytest_container-presentation</code></a>
 </p>
-
-
 </section>
 </section>
 <section>
-<section id="slide-org1c8e5ce">
-<h2 id="org1c8e5ce">Questions?</h2>
+<section id="slide-org54955d3">
+<h2 id="org54955d3">Questions?</h2>
 <p class="fragment appear">
 Answers!
 </p>
