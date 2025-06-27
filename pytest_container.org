@@ -68,15 +68,11 @@ Until they aren't 💥
 
 
 * Basic Example
-#+ATTR_REVEAL: :code_attribs data-line-numbers='1-2|4-6|9-13'
+#+ATTR_REVEAL: :code_attribs data-line-numbers='1-3|5-9'
 #+begin_src python
-import pytest
-from pytest_container import Container, ContainerData
-
 TW = Container(
     url="registry.opensuse.org/opensuse/tumbleweed:latest"
 )
-
 
 @pytest.mark.parametrize("container", [TW], indirect=True)
 def test_etc_os_release_present(container: ContainerData):
