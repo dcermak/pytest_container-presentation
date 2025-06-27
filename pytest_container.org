@@ -188,7 +188,7 @@ def test_port_forward(container: ContainerData, host):
         "curl --fail localhost:"
         + str(container.forwarded_ports[0].host_port)
     )
-    host.run_expect([0], cmd)
+    host.check_output(cmd)
 #+end_src
 
 
@@ -257,7 +257,7 @@ def test_port_forward(pod: PodData, host):
         "curl --fail localhost:"
         + str(pod.forwarded_ports[0].host_port)
     )
-    host.run_expect([0], cmd)
+    host.check_output(cmd)
 #+end_src
 
 
@@ -272,15 +272,15 @@ use the ~container_per_test~ fixture:
     "container_per_test", [TW], indirect=True
 )
 def test_rm_rf(container_per_test):
-    container_per_test.connection.run_expect([0], "rm -rf /")
+    container_per_test.connection.check_output("rm -rf /")
 
 
 @pytest.mark.parametrize(
     "container_per_test", [TW], indirect=True
 )
 def test_uninstall_zypper(container_per_test):
-    container_per_test.connection.run_expect(
-        [0], "rpm -e --nodeps zypper"
+    container_per_test.connection.check_output(
+        "rpm -e --nodeps zypper"
     )
 #+end_src
 
