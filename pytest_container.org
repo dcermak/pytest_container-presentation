@@ -391,15 +391,15 @@ pytest -vv -- -n auto
 - support for foreign architecture containers ([[https://github.com/dcermak/pytest_container/pull/183][#183]])
 - improved multistage build support ([[https://github.com/dcermak/pytest_container/issues/149][#149]])
 
-# * Users
+* Users
 
-# #+ATTR_REVEAL: :frag (appear)
-# - [[https://github.com/SUSE/BCI-tests/][BCI testsuite]]
-# - [[https://github.com/OSInside/kiwi/tree/master/test/scripts][kiwi image builder scripts]]
-# - [[https://github.com/openSUSE/obs-service-replace_using_package_version/tree/master/integration_tests][=obs-service-replace_using_package_version= integration tests]]
-# - [[https://github.com/openSUSE/obs-scm-bridge/tree/main/test][=obs-scm-bridge= integration tests]]
-# - [[https://github.com/openSUSE/obs-service-node_modules/blob/master/test_node_modules_download.py][=obs-service-node_modules= smoke test]]
-# - Your project here?
+#+ATTR_REVEAL: :frag (appear)
+- [[https://github.com/SUSE/BCI-tests/][BCI testsuite]]
+- [[https://github.com/OSInside/kiwi/tree/master/test/scripts][kiwi image builder scripts]]
+- [[https://github.com/openSUSE/obs-service-replace_using_package_version/tree/master/integration_tests][=obs-service-replace_using_package_version= integration tests]]
+- [[https://github.com/openSUSE/obs-scm-bridge/tree/main/test][=obs-scm-bridge= integration tests]]
+- [[https://github.com/openSUSE/obs-service-node_modules/blob/master/test_node_modules_download.py][=obs-service-node_modules= smoke test]]
+- Your project here?
 
 
 * Thanks!
