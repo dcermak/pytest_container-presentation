@@ -95,6 +95,9 @@ def test_etc_os_release_present(container: ContainerData):
 
 
 * ~pytest~ fixtures
+#+begin_notes
+- fixtures also support indirect parametrization
+#+end_notes
 
 #+ATTR_REVEAL: :frag (appear) :frag_idx (1)
 - fixtures for setup & teardown @@html: <i class="fa-solid fa-broom"></i>@@
@@ -118,15 +121,6 @@ def test_foo(x: int, y: int):
     # do something with x & y here
 #+end_src
 
-#+ATTR_REVEAL: :frag (appear) :frag_idx (4)
-- indirect parametrization of fixtures
-
-#+ATTR_REVEAL: :frag (appear) :frag_idx 4
-#+begin_src python
-@pytest.mark.parametrize("smtp_connection", [25], indirect=True)
-def test_ehlo(smtp_connection):
-    pass
-#+end_src
 
 * Usage examples
 
