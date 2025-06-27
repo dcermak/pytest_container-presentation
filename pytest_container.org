@@ -41,7 +41,7 @@ Dan Čermák
 @@html: </div>@@
 
 
-* Why Python and Pytest?
+* Why not =/bin/sh=?
 
 When shell scripts are:
 #+ATTR_REVEAL: :frag (appear)
@@ -49,12 +49,14 @@ When shell scripts are:
 - fast 🏎️
 - everyone understands them
 
+#+ATTR_REVEAL: :frag (appear)
+Until they aren't 💥
 
-* Sales pitch
+* Why =pytest_container=?
 
 #+ATTR_REVEAL: :frag (appear)
 - @@html: <i class="fa-solid fa-cloud-sun-rain"></i>@@ shell scripts are brittle
-- automatically pull, build, launch & cleanup containers @@html: <i class="fa-solid fa-cloud-arrow-down"></i>@@
+- @@html: <i class="fa-solid fa-cloud-arrow-down"></i>@@ automatically pull, build, launch & cleanup containers
 - use [[https://testinfra.readthedocs.io/][testinfra]] for convenience
 - @@html:<i class="fa-solid fa-shuffle"></i>@@ parallel test execution via [[https://github.com/pytest-dev/pytest-xdist][pytest-xdist]]
 - find & bind free ports
@@ -62,7 +64,7 @@ When shell scripts are:
 - @@html: <i class="fa-solid fa-broom"></i>@@ create and cleanup container volumes & bind mounts
 - @@html: <i class="fa-solid fa-box-archive"></i>@@ run the same test on multiple container images
 - supports @@html:<i class="fa-brands fa-docker"></i>@@ docker and podman transparently
-- works with Python 3.6+ and on =x86_64=, =aarch64=, =s390x=, =ppcle64=
+- works with @@html:<i class="fa-brands fa-python"></i>@@ Python 3.6+ and on =x86_64=, =aarch64=, =s390x=, =ppcle64=
 
 
 * Basic Example
