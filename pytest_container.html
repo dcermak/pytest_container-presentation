@@ -39,8 +39,8 @@
 CC BY 4.0 <i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i></a></p></div>
 </section>
 <section>
-<section id="slide-orgbaac3df">
-<h2 id="orgbaac3df">who -u</h2>
+<section id="slide-org6faf088">
+<h2 id="org6faf088">who -u</h2>
 <p>
 Dan Čermák
 </p>
@@ -62,8 +62,8 @@ Dan Čermák
 </section>
 </section>
 <section>
-<section id="slide-orgce696e5">
-<h2 id="orgce696e5">Why not <code>/bin/sh</code>?</h2>
+<section id="slide-org1d32c41">
+<h2 id="org1d32c41">Why not <code>/bin/sh</code>?</h2>
 <p>
 When shell scripts are:
 </p>
@@ -80,8 +80,8 @@ Until they aren't 💥
 </section>
 </section>
 <section>
-<section id="slide-orge4a0832">
-<h2 id="orge4a0832">Why <code>pytest_container</code>?</h2>
+<section id="slide-org301ad01">
+<h2 id="org301ad01">Why <code>pytest_container</code>?</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-cloud-sun-rain"></i> shell scripts are brittle</li>
 <li class="fragment appear"><i class="fa-solid fa-cloud-arrow-down"></i> automatically pull, build, launch &amp; cleanup containers</li>
@@ -98,8 +98,8 @@ Until they aren't 💥
 </section>
 </section>
 <section>
-<section id="slide-orgee8f576">
-<h2 id="orgee8f576">Basic Example</h2>
+<section id="slide-org22fdb58">
+<h2 id="org22fdb58">Basic Example</h2>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-3|5-9'>TW = Container(
@@ -116,8 +116,8 @@ def test_etc_os_release_present(container: ContainerData):
 </section>
 </section>
 <section>
-<section id="slide-org9f1bb72">
-<h2 id="org9f1bb72">Use Cases</h2>
+<section id="slide-org955dbd2">
+<h2 id="org955dbd2">Use Cases</h2>
 <ul>
 <li class="fragment appear"><i class="fa-solid fa-box-open"></i> system tests of base containers</li>
 <li class="fragment appear"><i class="fa-solid fa-database"></i> test applications inside containers</li>
@@ -127,8 +127,8 @@ def test_etc_os_release_present(container: ContainerData):
 </section>
 </section>
 <section>
-<section id="slide-orgea20481">
-<h2 id="orgea20481"><code>pytest</code> fixtures</h2>
+<section id="slide-orga4d8051">
+<h2 id="orga4d8051"><code>pytest</code> fixtures</h2>
 <aside class="notes">
 <ul>
 <li>fixtures also support indirect parametrization</li>
@@ -167,13 +167,13 @@ def test_foo(x: int, y: int):
 </section>
 </section>
 <section>
-<section id="slide-orga1a054e">
-<h2 id="orga1a054e">Usage examples</h2>
-<div class="outline-text-2" id="text-orga1a054e">
+<section id="slide-org5509806">
+<h2 id="org5509806">Usage examples</h2>
+<div class="outline-text-2" id="text-org5509806">
 </div>
 </section>
-<section id="slide-org8d8b4be">
-<h3 id="org8d8b4be">Build a new container for tests</h3>
+<section id="slide-org0b987e8">
+<h3 id="org0b987e8">Build a new container for tests</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='2|3-6|1-7|9-15'>WEB_SERVER = DerivedContainer(
@@ -194,8 +194,8 @@ def test_python_installed(container: ContainerData):
 </code></pre>
 </div>
 </section>
-<section id="slide-org671aee4">
-<h3 id="org671aee4">Dependencies between containers</h3>
+<section id="slide-orga9f8416">
+<h3 id="orga9f8416">Dependencies between containers</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-3|4-7|8-11|13,15'>TW = Container(
@@ -216,8 +216,8 @@ def test_nginx(auto_container): ...
 </code></pre>
 </div>
 </section>
-<section id="slide-org0ffbe42">
-<h3 id="org0ffbe42">Get a free port on the host</h3>
+<section id="slide-orgb26e398">
+<h3 id="orgb26e398">Get a free port on the host</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='3|1-4|6-9|12|6-14'>WEB_SERVER = DerivedContainer(
@@ -237,8 +237,8 @@ def test_port_forward(container: ContainerData, host):
 </code></pre>
 </div>
 </section>
-<section id="slide-org4b562d5">
-<h3 id="org4b562d5"><code>HEALTHCHECK</code></h3>
+<section id="slide-orgb2d457a">
+<h3 id="orgb2d457a"><code>HEALTHCHECK</code></h3>
 <aside class="notes">
 <ul>
 <li>will wait for healthcheck</li>
@@ -267,8 +267,8 @@ def test_server_up(container, container_runtime):
 </code></pre>
 </div>
 </section>
-<section id="slide-org31cf1c3">
-<h3 id="org31cf1c3">Create a Pod</h3>
+<section id="slide-org8f210ec">
+<h3 id="org8f210ec">Create a Pod</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-4|2|3|6-9|10-14'>MEDIAWIKI_FPM_POD = Pod(
@@ -288,8 +288,8 @@ def test_port_forward(pod: PodData, host):
 </code></pre>
 </div>
 </section>
-<section id="slide-org4cb03aa">
-<h3 id="org4cb03aa">Run mutable tests</h3>
+<section id="slide-orgad99fff">
+<h3 id="orgad99fff">Run mutable tests</h3>
 <p data-fragment-index="1" class="fragment (appear)">
 use the <code>container_per_test</code> fixture:
 </p>
@@ -313,8 +313,8 @@ def test_uninstall_zypper(container_per_test):
 </code></pre>
 </div>
 </section>
-<section id="slide-orgd484e8e">
-<h3 id="orgd484e8e">🔎 Inspect containers</h3>
+<section id="slide-orgfc252da">
+<h3 id="orgfc252da">🔎 Inspect containers</h3>
 <div class="org-src-container">
 
 <pre   ><code class="python" data-line-numbers='1-4|5|7|7,8|7,8,10-13'>@pytest.mark.parametrize(
@@ -333,8 +333,8 @@ def test_inspect(container: ContainerData):
 </code></pre>
 </div>
 </section>
-<section id="slide-orgc4ff711">
-<h3 id="orgc4ff711">Container Volumes</h3>
+<section id="slide-orgaf617df">
+<h3 id="orgaf617df">Container Volumes</h3>
 <p>
 Bind mounts
 </p>
@@ -358,7 +358,7 @@ def test_bind_mount_cwd(container: ContainerData):
 </div>
 
 </section>
-<section id="slide-orgc4ff711-split">
+<section id="slide-orgaf617df-split">
 
 <p>
 Container volumes
@@ -372,8 +372,8 @@ Container volumes
 </code></pre>
 </div>
 </section>
-<section id="slide-org5c6098b">
-<h3 id="org5c6098b">Use the same container globally</h3>
+<section id="slide-orga0ec442">
+<h3 id="orga0ec442">Use the same container globally</h3>
 <p data-fragment-index="1" class="fragment (appear)">
 use the <code>auto_container</code> / <code>auto_container_per_test</code> fixtures:
 </p>
@@ -390,8 +390,8 @@ def test_zypper_rm_works(auto_container_per_test): ...
 </code></pre>
 </div>
 </section>
-<section id="slide-org943209d">
-<h3 id="org943209d">Pick the Container Engine</h3>
+<section id="slide-org19ccebd">
+<h3 id="org19ccebd">Pick the Container Engine</h3>
 <div class="org-src-container">
 
 <pre   ><code class="bash" >export CONTAINER_RUNTIME=docker
@@ -399,8 +399,8 @@ pytest -vv
 </code></pre>
 </div>
 </section>
-<section id="slide-orgdf0a4ed">
-<h3 id="orgdf0a4ed">Run tests in parallel</h3>
+<section id="slide-org19c53e0">
+<h3 id="org19c53e0">Run tests in parallel</h3>
 <div class="org-src-container">
 
 <pre   ><code class="bash" data-line-numbers='1|3|5'>pip install pytest-xdist
@@ -411,8 +411,8 @@ pytest -vv -- -n auto
 </code></pre>
 </div>
 </section>
-<section id="slide-orge832354">
-<h3 id="orge832354">🧹 Automatic cleanup</h3>
+<section id="slide-org840426d">
+<h3 id="org840426d">🧹 Automatic cleanup</h3>
 <ul>
 <li class="fragment appear">containers</li>
 <li class="fragment appear">volumes</li>
@@ -424,8 +424,8 @@ pytest -vv -- -n auto
 </section>
 </section>
 <section>
-<section id="slide-orgcdedd40">
-<h2 id="orgcdedd40">Roadmap</h2>
+<section id="slide-org5cf2b9c">
+<h2 id="org5cf2b9c">Roadmap</h2>
 <ul>
 <li class="fragment appear">better entrypoint testing (<a href="https://github.com/dcermak/pytest_container/issues/206">#206</a>)</li>
 <li class="fragment appear">support for foreign architecture containers (<a href="https://github.com/dcermak/pytest_container/pull/183">#183</a>)</li>
@@ -435,8 +435,8 @@ pytest -vv -- -n auto
 </section>
 </section>
 <section>
-<section id="slide-orge2d4af1">
-<h2 id="orge2d4af1">Users</h2>
+<section id="slide-orgb775d28">
+<h2 id="orgb775d28">Users</h2>
 <ul>
 <li class="fragment appear"><a href="https://github.com/SUSE/BCI-tests/">BCI testsuite</a></li>
 <li class="fragment appear"><a href="https://github.com/OSInside/kiwi/tree/master/test/scripts">kiwi image builder scripts</a></li>
@@ -449,8 +449,8 @@ pytest -vv -- -n auto
 </section>
 </section>
 <section>
-<section id="slide-org42fc35d">
-<h2 id="org42fc35d">Thanks!</h2>
+<section id="slide-orgdc76afb">
+<h2 id="orgdc76afb">Thanks!</h2>
 <ul>
 <li><a href="https://github.com/evrardjp">Jean-Philippe Evrard</a></li>
 <li>QE-C Team, especially <a href="https://feldspaten.org/">Felix Niederwanger</a> and <a href="http://www.instagram.com/bake_with_jose">José Lausuch</a></li>
@@ -460,8 +460,8 @@ pytest -vv -- -n auto
 </section>
 </section>
 <section>
-<section id="slide-org6b63324">
-<h2 id="org6b63324">Give it a try!</h2>
+<section id="slide-orgebe7c4b">
+<h2 id="orgebe7c4b">Give it a try!</h2>
 <p>
 <img src="media/github-qr.svg" height="300px"/>
 </p>
@@ -480,8 +480,8 @@ pytest -vv -- -n auto
 </section>
 </section>
 <section>
-<section id="slide-orge622d3c">
-<h2 id="orge622d3c">Questions?</h2>
+<section id="slide-orgf3a1ebb">
+<h2 id="orgf3a1ebb">Questions?</h2>
 <p class="fragment appear">
 Answers!
 </p>
